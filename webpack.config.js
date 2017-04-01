@@ -27,7 +27,10 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+        options: {
+          plugins: ['transform-runtime']
+        }
       },
       {
         test: /(\.jsx|\.js)$/,

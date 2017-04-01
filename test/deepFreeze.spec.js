@@ -8,6 +8,13 @@ unitTest('deepFreeze:', () => {
     expect(frozen).to.be.frozen;
   });
 
+  it('should throw exepction on assignment', () => {
+    // when
+    const frozen = deepFreeze({ a: 'a' });
+    // then
+    expect(() => { frozen.a = 'b'; }).to.throw(/Cannot assign to read only property 'a'/);
+  });
+
   it('should create a copy of the argument', () => {
     // given
     const passedObj = { a: 'a' };
