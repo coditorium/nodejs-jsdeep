@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint .",
     "build": "npm run build:normal && npm run build:min",
-    "build:normal": "mkdirp ./dist && babel ./lib --out-file ./dist/jsdeep.js --source-maps",
+    "build:normal": "mkdirp ./dist && babel ./lib --out-file ./dist/jsdeep.js",
     "build:min": "npm run build:normal -- --presets babili",
     "clean": "rimraf ./dist ./coverage",
     "test": "mocha --compilers js:babel-core/register --require './test/setup.js' ./test/**/*.spec.js",
