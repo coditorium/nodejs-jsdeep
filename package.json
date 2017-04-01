@@ -1,6 +1,6 @@
 {
   "name": "jsdeep",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Deep operations on json objects",
   "main": "./dist/jsdeep.js",
   "scripts": {
