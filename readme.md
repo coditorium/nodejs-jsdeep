@@ -7,6 +7,8 @@
 
 A library that contains basic operations on nested json structures.
 
+[Demo page](https://jsbin.com/masimiseva/9/edit?html,js,console)
+
 ## Features
 
 - Provides operations to manipulate json structures.
@@ -28,7 +30,7 @@ const obj = { x: { y: { z: true } } };
 const frozen = deepFreeze(obj);
 console.log(frozen);
 // Output: { x: { y: { z: true } } }
-frozen.x.y.z = false
+frozen.x.y.z = false;
 // Output: TypeError: Cannot assign to read only property 'z'
 ```
 
