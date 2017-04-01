@@ -1,6 +1,6 @@
 import { deepGet } from './index';
 
-unitTest('Deep get:', () => {
+unitTest('deepGet:', () => {
   it('should get a prop - string query', () => {
     // given
     const obj = { x: { y: { z: 123 } } };

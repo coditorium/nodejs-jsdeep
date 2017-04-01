@@ -1,6 +1,6 @@
 import { deepFreeze } from './index';
 
-unitTest('Deep freeze:', () => {
+unitTest('deepFreeze:', () => {
   it('should freeze an object', () => {
     // when
     const frozen = deepFreeze({ a: 'a' });

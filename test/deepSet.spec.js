@@ -1,20 +1,28 @@
 import { deepSet } from './index';
 
-unitTest('Deep set:', () => {
-  it('should set prop in an empty obj - array query', () => {
+unitTest('deepSet:', () => {
+  it('should create new parent objects and copy siblings', () => {
     // given
-    const obj = {};
+    const obj = { a: {}, b: {} };
     // when
-    deepSet(obj, ['x', 'y', 'z'], 123);
+    const copy = deepSet(obj, 'b.c', true);
+    // then
+    expect(copy).to.deep.equal({ a: {}, b: { c: true } });
+    expect(copy.a).to.equal(obj.a);
+    expect(copy).to.not.equal(obj);
+    expect(copy.b).to.not.equal(obj.b);
+  });
+
+  it('should set prop in an empty obj - array query', () => {
+    // when
+    const obj = deepSet({}, ['x', 'y', 'z'], 123);
     // then
     expect(obj).to.be.eql({ x: { y: { z: 123 } } });
   });
 
   it('should set prop in an empty obj - string query', () => {
-    // given
-    const obj = {};
     // when
-    deepSet(obj, 'x.y.z', 123);
+    const obj = deepSet({}, 'x.y.z', 123);
     // then
     expect(obj).to.be.eql({ x: { y: { z: 123 } } });
   });
@@ -23,34 +31,23 @@ unitTest('Deep set:', () => {
     // given
     const obj = { x: { y: { z: 123 } } };
     // when
-    deepSet(obj, 'x.y.w', 'xyw');
+    const copy = deepSet(obj, 'x.y.w', 'xyw');
     // then
-    expect(obj).to.be.eql({ x: { y: { z: 123, w: 'xyw' } } });
+    expect(copy).to.be.eql({ x: { y: { z: 123, w: 'xyw' } } });
   });
 
   it('should modify a prop', () => {
     // given
     const obj = { x: { y: { z: 123 } } };
     // when
-    deepSet(obj, 'x.y.z', 'xyz');
+    const copy = deepSet(obj, 'x.y.z', 'xyz');
     // then
-    expect(obj).to.be.eql({ x: { y: { z: 'xyz' } } });
-  });
-
-  it('should modify an array', () => {
-    // given
-    const obj = { x: ['a'] };
-    // when
-    deepSet(obj, 'x.1', 'b');
-    // then
-    expect(obj).to.be.eql({ x: ['a', 'b'] });
+    expect(copy).to.be.eql({ x: { y: { z: 'xyz' } } });
   });
 
   it('should set an object', () => {
-    // given
-    const obj = { };
     // when
-    deepSet(obj, 'x.y', { z: 123 });
+    const obj = deepSet({}, 'x.y', { z: 123 });
     // then
     expect(obj).to.be.eql({ x: { y: { z: 123 } } });
   });

@@ -1,6 +1,6 @@
 import { deepExists } from './index';
 
-unitTest('Deep exists:', () => {
+unitTest('deepExists:', () => {
   it('should confirm existsence of embedded property', () => {
     // given
     const obj = { x: { y: { z: 123 } } };
@@ -34,5 +34,12 @@ unitTest('Deep exists:', () => {
     const obj = { };
     // then
     expect(deepExists(obj, 'x.y.z')).to.be.false;
+  });
+
+  it('should check property existance not value', () => {
+    // given
+    const obj = { a: false };
+    // then
+    expect(deepExists(obj, 'a')).to.be.true;
   });
 });
