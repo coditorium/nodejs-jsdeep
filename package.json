@@ -2,7 +2,7 @@
   "name": "jsdeep",
   "version": "1.2.0",
   "description": "Deep operations on json objects",
-  "main": "./index.js",
+  "main": "./dist/jsdeep.js",
   "scripts": {
     "lint": "eslint .",
     "build": "npm run build:normal && npm run build:min",
