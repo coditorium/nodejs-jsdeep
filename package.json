@@ -1,6 +1,6 @@
 {
   "name": "jsdeep",
-  "version": "1.2.0",
+  "version": "1.1.0",
   "description": "Deep operations on json objects",
   "main": "./index.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "ci": "npm run clean && npm run lint && npm run build && npm run coverage",
     "preversion": "npm whoami && npm run ci",
     "version": "npm run build && git add -A",
-    "postversion": "git push && git push --tags && cp package.json README.md ./dist/ && npm publish ./dist && npm run clean"
+    "postversion": "git push && git push --tags && npm publish ./dist && npm run clean"
   },
   "keywords": [],
   "author": "",
