@@ -107,7 +107,7 @@ console.log(deepSet({ a: 'a' }, 'x.y.z', 123));
 // Output: { a: 'a', x: { y: { z: 123 } } }
 ```
 
-### Deep exists
+### Deep exist
 
 Deep check for a json property.
 
@@ -123,5 +123,26 @@ console.log(deepExists(obj, 'x.y.z'));
 console.log(deepExists(obj, ['x', 'y', 'z']));
 // Output: true
 console.log(deepExists(obj, 'x.y.y'));
+// Output: false
+```
+
+### Deep equal
+
+Deep comparison.
+
+- [tests](test/deepEqual.spec.js)
+- [implementation](lib/deepEqual.js)
+
+```js
+import { deepEqual } from 'jsdeep';
+
+const a = { x: { y: { z: 123 } } };
+const b = { x: { y: { z: 123 } } };
+const c = { x: { y: { z: 1234 } } };
+console.log(deepEqual(a, b));
+// Output: true
+console.log(deepEqual(a, c));
+// Output: false
+console.log(deepEqual(a, b, c));
 // Output: false
 ```
