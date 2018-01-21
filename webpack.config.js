@@ -4,11 +4,10 @@ const yargs = require('yargs');
 const libraryName = require('./package').name;
 
 const isProduction = yargs.argv.env === 'production'; // use --env with webpack 2
-const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 
 const plugins = () => (
   isProduction ?
-    [new UglifyJsPlugin({ minimize: true, sourceMap: true })] :
+    [new webpack.optimize.UglifyJsPlugin({ minimize: true, sourceMap: true })] :
     []
 );
 

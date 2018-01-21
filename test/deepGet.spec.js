@@ -1,30 +1,30 @@
 import { deepGet } from './index';
 
-unitTest('deepGet:', () => {
-  it('should get a prop - string query', () => {
+describe('deepGet:', () => {
+  test('should get a prop - string query', () => {
     // given
     const obj = { x: { y: { z: 123 } } };
     // then
-    expect(deepGet(obj, 'x.y.z')).to.be.equal(obj.x.y.z);
+    expect(deepGet(obj, 'x.y.z')).toBe(obj.x.y.z);
   });
 
-  it('should get a prop - array query', () => {
+  test('should get a prop - array query', () => {
     // given
     const obj = { x: { y: { z: 123 } } };
     // then
-    expect(deepGet(obj, ['x', 'y', 'z'])).to.be.equal(obj.x.y.z);
+    expect(deepGet(obj, ['x', 'y', 'z'])).toBe(obj.x.y.z);
   });
 
-  it('should get the second element from an array', () => {
+  test('should get the second element from an array', () => {
     // given
     const obj = { x: ['a', 'b', 'c'] };
-    expect(deepGet(obj, 'x.2')).to.be.equal(obj.x[2]);
+    expect(deepGet(obj, 'x.2')).toBe(obj.x[2]);
   });
 
-  it('should return undefined on non existing propery', () => {
+  test('should return undefined on non existing propery', () => {
     // given
     const obj = { };
     // then
-    expect(deepGet(obj, 'x.y.z')).to.be.equal(undefined);
+    expect(deepGet(obj, 'x.y.z')).toBe(undefined);
   });
 });

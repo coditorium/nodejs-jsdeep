@@ -2,16 +2,16 @@ import { deepEqual } from './index';
 
 const someSymbol = Symbol('abc');
 
-unitTest('deepEqual:', () => {
+describe('deepEqual:', () => {
   const shouldReturnTrueFor = (title, ...args) => {
-    it(`should return true for equal ${title}`, () => {
-      expect(deepEqual(...args)).to.be.true;
+    test(`should return true for equal ${title}`, () => {
+      expect(deepEqual(...args)).toBe(true);
     });
   };
 
   const shouldReturnFalseFor = (title, ...args) => {
-    it(`should return false for unequal ${title}`, () => {
-      expect(deepEqual(...args)).to.be.false;
+    test(`should return false for unequal ${title}`, () => {
+      expect(deepEqual(...args)).toBe(false);
     });
   };
 

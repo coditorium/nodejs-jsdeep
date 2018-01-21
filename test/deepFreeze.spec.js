@@ -1,51 +1,58 @@
 import { deepFreeze } from './index';
 
-unitTest('deepFreeze:', () => {
-  it('should freeze an object', () => {
+const expectFrozen = obj =>
+  expect(Object.isFrozen(obj)).toBe(true);
+
+const expectNotFrozen = obj =>
+  expect(Object.isFrozen(obj)).toBe(false);
+
+describe('deepFreeze:', () => {
+  test('should freeze an object', () => {
     // when
     const frozen = deepFreeze({ a: 'a' });
     // then
-    expect(frozen).to.be.frozen;
+    expectFrozen(frozen);
   });
 
-  it('should throw exepction on assignment', () => {
+  test('should throw exepction on assignment', () => {
     // when
     const frozen = deepFreeze({ a: 'a' });
     // then
-    expect(() => { frozen.a = 'b'; }).to.throw(/Cannot assign to read only property 'a'/);
+    expect(() => { frozen.a = 'b'; })
+      .toThrow(/Cannot assign to read only property 'a'/);
   });
 
-  it('should create a copy of the argument', () => {
+  test('should create a copy of the argument', () => {
     // given
     const passedObj = { a: 'a' };
     // when
     const frozen = deepFreeze(passedObj);
     // then
-    expect(frozen).to.not.be.equal(passedObj);
+    expect(frozen).not.toBe(passedObj);
   });
 
-  it('should deeply freeze an object', () => {
+  test('should deeply freeze an object', () => {
     // when
     const frozen = deepFreeze({ a: { x: 'x' } });
     // then
-    expect(frozen.a).to.be.frozen;
+    expectFrozen(frozen.a);
   });
 
-  it('should freeze an array', () => {
+  test('should freeze an array', () => {
     // when
     const frozen = deepFreeze(['a']);
     // then
-    expect(frozen).to.be.frozen;
+    expectFrozen(frozen);
   });
 
-  it('should deeply freeze an array', () => {
+  test('should deeply freeze an array', () => {
     // when
     const frozen = deepFreeze([{ a: 'a' }]);
     // then
-    expect(frozen[0]).to.be.frozen;
+    expectFrozen(frozen[0]);
   });
 
-  it('should deeply freeze a complex object', () => {
+  test('should deeply freeze a complex object', () => {
     // when
     const frozen = deepFreeze({
       a: [{
@@ -55,27 +62,27 @@ unitTest('deepFreeze:', () => {
       }]
     });
     // then
-    expect(frozen.a[0].b[0].c).to.be.frozen;
+    expectFrozen(frozen.a[0].b[0].c);
   });
 
-  it('should not freeze instance of a class', () => {
+  test('should not freeze instance of a class', () => {
     // given
     class SomeClass {}
     const instance = new SomeClass();
     // when
     const frozen = deepFreeze(instance);
     // then
-    expect(frozen).not.to.be.frozen;
-    expect(frozen).to.be.equal(instance);
+    expectNotFrozen(frozen);
+    expect(frozen).toBe(instance);
   });
 
-  it('should not freeze freeze a date', () => {
+  test('should not freeze freeze a date', () => {
     // given
     const date = new Date();
     // when
     const frozen = deepFreeze(date);
     // then
-    expect(frozen).not.to.be.frozen;
-    expect(frozen).to.be.equal(date);
+    expectNotFrozen(frozen);
+    expect(frozen).toBe(date);
   });
 });

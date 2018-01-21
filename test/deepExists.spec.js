@@ -1,45 +1,45 @@
 import { deepExists } from './index';
 
-unitTest('deepExists:', () => {
-  it('should confirm existsence of embedded property', () => {
+describe('deepExists:', () => {
+  test('should confirm existsence of embedded property', () => {
     // given
     const obj = { x: { y: { z: 123 } } };
     // then
-    expect(deepExists(obj, 'x.y.z')).to.be.true;
+    expect(deepExists(obj, 'x.y.z')).toBe(true);
   });
 
-  it('should confirm existsence o embedded property - query with array', () => {
+  test('should confirm existsence o embedded property - query with array', () => {
     // given
     const obj = { x: { y: { z: 123 } } };
     // then
-    expect(deepExists(obj, ['x', 'y', 'z'])).to.be.true;
+    expect(deepExists(obj, ['x', 'y', 'z'])).toBe(true);
   });
 
-  it('should confirm an array item', () => {
+  test('should confirm an array item', () => {
     // given
     const obj = { x: ['a', 'b'] };
     // then
-    expect(deepExists(obj, 'x.1')).to.be.true;
+    expect(deepExists(obj, 'x.1')).toBe(true);
   });
 
-  it('should decline an array item', () => {
+  test('should decline an array item', () => {
     // given
     const obj = { x: ['a', 'b'] };
     // then
-    expect(deepExists(obj, 'x.3')).to.be.false;
+    expect(deepExists(obj, 'x.3')).toBe(false);
   });
 
-  it('should decline existence of a property', () => {
+  test('should decline existence of a property', () => {
     // given
     const obj = { };
     // then
-    expect(deepExists(obj, 'x.y.z')).to.be.false;
+    expect(deepExists(obj, 'x.y.z')).toBe(false);
   });
 
-  it('should check property existance not value', () => {
+  test('should check property existance not value', () => {
     // given
     const obj = { a: false };
     // then
-    expect(deepExists(obj, 'a')).to.be.true;
+    expect(deepExists(obj, 'a')).toBe(true);
   });
 });
