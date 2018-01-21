@@ -57,4 +57,25 @@ unitTest('deepFreeze:', () => {
     // then
     expect(frozen.a[0].b[0].c).to.be.frozen;
   });
+
+  it('should not freeze instance of a class', () => {
+    // given
+    class SomeClass {}
+    const instance = new SomeClass();
+    // when
+    const frozen = deepFreeze(instance);
+    // then
+    expect(frozen).not.to.be.frozen;
+    expect(frozen).to.be.equal(instance);
+  });
+
+  it('should not freeze freeze a date', () => {
+    // given
+    const date = new Date();
+    // when
+    const frozen = deepFreeze(date);
+    // then
+    expect(frozen).not.to.be.frozen;
+    expect(frozen).to.be.equal(date);
+  });
 });

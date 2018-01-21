@@ -21,12 +21,11 @@ unitTest('deepCopy:', () => {
     expect(copy.a[0]).to.not.equal(source.a[0]);
   });
 
-  it('should copy a date', () => {
+  it('should copy a date by a reference', () => {
     const source = { a: new Date() };
     // when
     const copy = deepCopy(source);
     // then
-    expect(copy.a).to.deep.equal(source.a);
-    expect(copy.a).to.not.equal(source.a);
+    expect(copy.a).to.equal(source.a);
   });
 });
